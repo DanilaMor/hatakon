@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link  rel="stylesheet" type="text/css" href="MyStile.css"/>
+    <script type="text/javascript" src="submit.js"></script>
+    <script type="text/javascript" src="table.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<p><b>Калькулятор квадратных уравнений:</b><br>
+<form id = "form" name="test" method="post">
+    <input type="text" id="A"  size="2" value="0">X^2+
+    <input type="text" id="B" size="2" value="0">X+
+    <input type="text" id="C" size="2" value="0">=0
+</form>
+    <p><input type="button" value="Решить" onclick="submit1()"></p>
+<table id = "table" class="stripy">
+    <caption>История решений</caption>
+    <tr><th class="STH">Время</th><th class="STH">Коэффициенты</th><th class="STH">Ответ</th></tr>
+</table>
+</body>
+</html>
