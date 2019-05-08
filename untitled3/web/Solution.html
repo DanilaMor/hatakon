@@ -8,15 +8,8 @@
     <title>Title</title>
 </head>
 <body>
-<!--<p><b>Калькулятор квадратных уравнений:</b><br>-->
-<!--<form id = "form" name="test" method="post">-->
-<!--<input type="text" id="A"  size="2" value="0">X^2+-->
-<!--<input type="text" id="B" size="2" value="0">X+-->
-<!--<input type="text" id="C" size="2" value="0">=0-->
-<!--</form>-->
-<p><input id="start" type="button" value="Start" onclick="startGame()"></p>
+
 <table id="table" class="stripy">
-    <caption>История решений</caption>
     <tr>
         <th id="0;0"></th>
         <th id="0;1"></th>
@@ -42,23 +35,8 @@
         <th id="3;3"></th>
     </tr>
 </table>
-<!--<button id="start">Start</button>-->
+<p><input id="start" type="button" value="Start" onclick="startGame()"></p>
 <p id="timer"></p>
-<!--&lt;!&ndash;<button id="stop">Stop</button>&ndash;&gt;-->
-<!--<script type="text/javascript">-->
-    <!--var timer = 0;-->
-    <!--document.getElementById('start').onclick = function () {-->
-        <!--timer = new Date().getTime()-->
-    <!--}-->
-    <!--document.getElementById('stop').onclick = function () {-->
-        <!--timer = 0-->
-    <!--}-->
-
-    <!--var interval = setInterval(function () {-->
-        <!--if (timer == 0) return;-->
-        <!--document.getElementById('timer').innerHTML = (new Date().getTime() - timer) / 1000-->
-    <!--}, 100);-->
-<!--//</script>-->
 </body>
 </html>
 

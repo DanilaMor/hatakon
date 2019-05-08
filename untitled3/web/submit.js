@@ -45,19 +45,26 @@ function startGame() {
 
     setTimeout("viewColor(null)", 10000);
     // run timer
+    setTimeout("runTimer()", 10000);
 
-    timer = new Date().getTime();
-
-    var interval = setInterval(function () {
-        if (timer == 0) return;
-        document.getElementById('timer').innerHTML = (new Date().getTime() - timer) / 1000;
-        if (numPairsFound == 8) {
-            var message = "Вы выиграли:\n Затраченное время: " + timer;
-            alert(message);
-            timer = 0;
-        }
-    }, 100);
 }
+
+function runTimer(){
+        timer = new Date().getTime();
+
+        var interval = setInterval(function () {
+            if (timer == 0) return;
+            var time = (new Date().getTime() - timer) / 1000
+            document.getElementById('timer').innerHTML = time;
+            if (numPairsFound == 8) {
+                var message = "Вы выиграли:\n Затраченное время: " + time;
+                alert(message);
+                timer = 0;
+            }
+        }, 100);
+}
+
+
 function getColorNull(color) {
     var colorNull = 0;
     for (var kk = 0; kk < color.length; kk++) {
@@ -124,16 +131,18 @@ function activeCell(r) {
         if (currentCell != null) {
             setColor(table.pole[i][j], id);
 
+             setTimeout(function() {
             if (currentCell.getAttribute("style") != r.getAttribute("style")) {
-                setColor("white", id);
-                setColor("white", currentCell.getAttribute("id"));
+                    setColor("white", id);
+                    setColor("white", currentCell.getAttribute("id"));
             } else {
                 if (currentCell.getAttribute("id") != r.getAttribute("id")) {
                     numPairsFound++;
                 }
             }
-
             currentCell = null;
+            }
+            , 200)
         }
 
     }
