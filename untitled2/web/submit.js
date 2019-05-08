@@ -19,33 +19,33 @@ function submit() {
         var charA = charLine;
         var charB = charHigh;
         for (var i = 0; i < 4; i++) {
-            var charAA;
-            var charBB;
+            var delta1;
+            var delta2;
             switch (i) {
                 case 0:
-                    charAA = charA + 1;
-                    charBB = charB + 2;
+                    delta1 =  1;
+                    delta2 =  2;
                     break;
                 case 1:
-                    charAA = charA - 1;
-                    charBB = charB - 2;
+                    delta1 =  -1;
+                    delta2 =  -2;
                     break;
                 case 2:
-                    charAA = charA - 1;
-                    charBB = charB + 2;
+                    delta1 =  -1;
+                    delta2 =  2;
                     break;
                 case 3:
-                    charAA = charA + 1;
-                    charBB = charB - 2;
+                    delta1 =  1;
+                    delta2 =  -2;
                     break;
             }
-            if (line[charAA] != null && hight[charBB] != null) {
-                result[index] = "" + line[charAA] + hight[charBB];
+            if (line[charA + delta1] != null && hight[charB+delta2] != null) {
+                result[index] = "" + line[charA + delta1] + hight[charB+delta2];
                 index = index + 1;
             }
 
-            if (line[charBB] != null && hight[charAA] != null) {
-                result[index] = "" + line[charBB] + hight[charAA];
+            if (line[charA + delta2] != null && hight[charB+delta1] != null) {
+                result[index] = "" + line[charA + delta2] + hight[charB+delta1];
                 index = index + 1;
             }
         }
