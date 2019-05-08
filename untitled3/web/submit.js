@@ -60,8 +60,14 @@ function runTimer(){
                 var message = "Вы выиграли:\n Затраченное время: " + time;
                 alert(message);
                 timer = 0;
+                 setTimeout(function () {
+                   document.getElementById('timer').innerHTML = 0;
+                      viewColor(null)
+                 }, 5000)
             }
         }, 100);
+
+
 }
 
 
