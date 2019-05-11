@@ -2,18 +2,9 @@ table {
     padding: 3px;
     border: 1px solid black;
 }
+
 .stripy {
-
     border-collapse: collapse;
-}
-
-/*
-    width: 250px;
-    height: 250px;
-*/
-.STD, .STH {
-    padding: 3px;
-    border: 1px solid black;
 }
 
 .BlackCell{
@@ -37,14 +28,6 @@ table {
     border: 1px solid black;
     background: green;
 }
-
-.GreenCell{
-    width: 40px;
-    height: 40px;
-    padding: 3px;
-    border: 1px solid black;
-    background: green;
-}
 .BlueCell{
     width: 40px;
     height: 40px;
@@ -52,22 +35,3 @@ table {
     border: 1px solid black;
     background: blue;
 }
-/*
-tr, th{
-    padding: 3px;
-    border: 1px solid black;
-}
-
-/*.STH {*/
-     /*background: #b0e0e6;*/
- /*}*/
-
-/* нечетная строка таблицы класса stripy */
-/*.stripy tr:nth-child(2n+1){*/
-    /*background: #baffaf;*/
-/*}*/
-
-/*!* четная строка таблицы класса stripy *!*/
-/*.stripy tr:nth-child(2n){*/
-    /*background:#efe;*/
-/*}*/

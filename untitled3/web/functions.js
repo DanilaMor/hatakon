@@ -1,12 +1,20 @@
+// object to save the state of the table
 var table = {
     "pole": []
 };
+
+// save current object
 var currentCell = null;
+
 var timer = 0;
+
+// number of guessed pairs
 var numPairsFound = 0;
 
+//run function
 function startGame() {
     numPairsFound = 0;
+    // white fill
     table.pole = new Array(4);
     for (var i = 0; i < 4; i++) {
         table.pole[i] = new Array(4);
@@ -15,23 +23,30 @@ function startGame() {
         }
     }
 
+    // array colors
     var color = ["green", "red", "black", "yellow", "blue", "sienna", "purple", "#b0e0e6"];
 
     var colorNull = 0;
-    while (colorNull != 8) {
-        var iter = randomInteger(0, color.length - 1);
 
+    // filling the playing field
+    while (colorNull != 8) {
+
+        // we get a random color
+        var iter = randomInteger(0, color.length - 1);
         if (getColorNull(color) > 0 && getColorNull(color) < 8) {
             while (color[iter] == null) {
                 iter = randomInteger(0, color.length - 1);
             }
         }
 
+        // we get a random cell
         var ii = randomInteger(0, 3);
         var jj = randomInteger(0, 3);
 
+        // set color for cell
         if (!isColor(table.pole, color[iter])) {
-            // alert(color[iter]);
+
+            // add new color only instead of white
             if (table.pole[ii][jj] == "white") {
                 table.pole[ii][jj] = color[iter];
                 var id = ii + ";" + jj;
@@ -43,34 +58,34 @@ function startGame() {
         }
     }
 
+    //hide colors in 10 seconds
     setTimeout("viewColor(null)", 10000);
-    // run timer
+
+    // run timer in 10 seconds
     setTimeout("runTimer()", 10000);
-
 }
 
-function runTimer(){
-        timer = new Date().getTime();
+// run timer
+function runTimer() {
+    timer = new Date().getTime();
 
-        var interval = setInterval(function () {
-            if (timer == 0) return;
-            var time = (new Date().getTime() - timer) / 1000
-            document.getElementById('timer').innerHTML = time;
-            if (numPairsFound == 8) {
-                var message = "Вы выиграли:\n Затраченное время: " + time;
-                alert(message);
-                timer = 0;
-                 setTimeout(function () {
-                   document.getElementById('timer').innerHTML = 0;
-                      viewColor(null)
-                 }, 5000)
-            }
-        }, 100);
-
-
+    var interval = setInterval(function () {
+        if (timer == 0) return;
+        var time = (new Date().getTime() - timer) / 1000;
+        document.getElementById('timer').innerHTML = time;
+        if (numPairsFound == 8) {
+            var message = "Вы выиграли:\n Затраченное время: " + time;
+            alert(message);
+            timer = 0;
+            setTimeout(function () {
+                document.getElementById('timer').innerHTML = 0;
+                viewColor(null)
+            }, 5000)
+        }
+    }, 100);
 }
 
-
+// counts the number of colors used
 function getColorNull(color) {
     var colorNull = 0;
     for (var kk = 0; kk < color.length; kk++) {
@@ -80,6 +95,7 @@ function getColorNull(color) {
     }
     return colorNull;
 }
+
 
 function viewColor(tableCalls) {
     for (var i = 0; i < 4; i++) {
@@ -95,11 +111,14 @@ function viewColor(tableCalls) {
         }
     }
 }
+
+// set color for cell
 function setColor(color, id) {
     if (color != null) {
         var cell = document.getElementById(id);
         cell.setAttribute("style", "background: " + color);
 
+        // add function
         if (cell.getAttribute("onclick") == null) {
             cell.setAttribute("onclick", "activeCell(this)");
         }
@@ -113,6 +132,7 @@ function randomInteger(min, max) {
     return rand;
 }
 
+// checks whether it is possible to add color to the table
 function isColor(matr, color) {
     var count = 0;
     for (var i = 0; i < 4; i++) {
@@ -125,31 +145,42 @@ function isColor(matr, color) {
     return count == 2;
 }
 
+//starts when a cell is selected
 function activeCell(r) {
+
+    // get id current cell
     var id = r.getAttribute("id");
+
+    // get i,j in id
     var coord = id.split(";");
     var i = coord[0];
     var j = coord[1];
+
+    //check if in memory cell
     if (currentCell == null) {
+        //open the selected cell
         setColor(table.pole[i][j], id);
+
+        // save cell
         currentCell = r;
     } else {
-        if (currentCell != null) {
-            setColor(table.pole[i][j], id);
+        //open the selected cell
+        setColor(table.pole[i][j], id);
 
-             setTimeout(function() {
-            if (currentCell.getAttribute("style") != r.getAttribute("style")) {
+        // check colors in open cells
+        setTimeout(function () {
+                if (currentCell.getAttribute("style") != r.getAttribute("style")) {
+                    // hide cells
                     setColor("white", id);
                     setColor("white", currentCell.getAttribute("id"));
-            } else {
-                if (currentCell.getAttribute("id") != r.getAttribute("id")) {
-                    numPairsFound++;
+                } else {
+                    // check the id of the cells if they do not match, we believe that a pair of colors was found
+                    if (currentCell.getAttribute("id") != r.getAttribute("id")) {
+                        numPairsFound++;
+                    }
                 }
-            }
-            currentCell = null;
+                currentCell = null;
             }
             , 200)
-        }
-
     }
 }
